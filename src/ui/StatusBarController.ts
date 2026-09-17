@@ -81,21 +81,8 @@ export class StatusBarController implements vscode.Disposable {
 
         const utilizationBucket = Math.round((Number(gpu.utilization) || 0) / 5) * 5;
         const memoryBucket = Math.round(memoryPercent / 2) * 2;
-        const temperatureBucket = gpu.temperature === undefined
-          ? "na"
-          : Math.round(gpu.temperature / 2) * 2;
-        const powerBucket = gpu.powerDraw === undefined
-          ? "na"
-          : Math.round(gpu.powerDraw / 10) * 10;
 
-        return [
-          gpu.uuid,
-          utilizationBucket,
-          memoryBucket,
-          temperatureBucket,
-          powerBucket,
-          gpu.processes.length
-        ].join(":");
+        return [gpu.uuid, utilizationBucket, memoryBucket].join(":");
       })
       .join("|");
   }
@@ -116,8 +103,6 @@ export class StatusBarController implements vscode.Disposable {
       const memoryPercent = gpu.memoryTotalMiB > 0
         ? Math.round((gpu.memoryUsedMiB / gpu.memoryTotalMiB) * 100)
         : 0;
-      const temperature = gpu.temperature === undefined ? "N/A" : `${gpu.temperature}°C`;
-      const power = gpu.powerDraw === undefined ? "N/A" : `${gpu.powerDraw.toFixed(0)} W`;
 
       markdown.appendMarkdown(`**GPU ${gpu.index} — ${gpu.name}**\n\n`);
       markdown.appendMarkdown(
@@ -125,9 +110,6 @@ export class StatusBarController implements vscode.Disposable {
       );
       markdown.appendMarkdown(
         `VRAM&nbsp;&nbsp;\`${this.progressBar(memoryPercent)}\` **${memoryPercent}%**  ${used} / ${total} GiB\n\n`
-      );
-      markdown.appendMarkdown(
-        `Temperature **${temperature}** · Power **${power}** · ${gpu.processes.length} process${gpu.processes.length === 1 ? "" : "es"}\n\n`
       );
     });
 

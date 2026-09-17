@@ -3,7 +3,7 @@
   "displayName": "NVIDIA GPU Scope",
   "description": "Real-time NVIDIA GPU monitoring for VS Code with multi-GPU dashboards, status-bar hover metrics, and Remote SSH support.",
   "version": "1.0.0",
-  "publisher": "Huia",
+  "publisher": "ghlcode",
   "license": "MIT",
   "icon": "images/icon.png",
   "engines": {
@@ -55,6 +55,7 @@
         "command": "gpuScope.stop",
         "title": "NVIDIA GPU Scope: Stop Monitoring"
       },
+
       {
         "command": "gpuScope.openDashboard",
         "title": "NVIDIA GPU Scope: Open Dashboard"

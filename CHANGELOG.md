@@ -9,7 +9,7 @@ All notable changes to NVIDIA GPU Scope are documented in this file.
 - Focused dashboard cards on utilization, VRAM, temperature, and power.
 - Displayed current and rated power together, for example `10W/250W`.
 - Added recent utilization history and GPU pinning.
-- Added a compact status-bar entry with a throttled metrics tooltip.
+- Added a compact status-bar entry with a throttled utilization and VRAM tooltip.
 - Preserved existing `gpuScope.*` settings and command identifiers.
 - Added Remote SSH, WSL, and Dev Container workspace-extension support.
 

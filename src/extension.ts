@@ -21,9 +21,10 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     vscode.commands.registerCommand("gpuScope.refresh", () => monitor.refresh()),
     vscode.commands.registerCommand("gpuScope.start", () => monitor.start()),
     vscode.commands.registerCommand("gpuScope.stop", () => monitor.stop()),
-    vscode.commands.registerCommand("gpuScope.openDashboard", () =>
-      vscode.commands.executeCommand("workbench.view.extension.gpuScope")
-    ),
+    vscode.commands.registerCommand("gpuScope.openDashboard", async () => {
+      await vscode.commands.executeCommand("workbench.view.extension.gpuScope");
+      await vscode.commands.executeCommand(`${DashboardProvider.viewType}.focus`);
+    }),
     vscode.workspace.onDidChangeConfiguration(event => {
       if (
         event.affectsConfiguration("gpuScope.refreshInterval") ||

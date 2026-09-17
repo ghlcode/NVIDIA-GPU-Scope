@@ -13,7 +13,7 @@ NVIDIA GPU Scope is a lightweight NVIDIA GPU monitor for Visual Studio Code. It 
 - Multiple GPUs displayed simultaneously
 - Pin any GPU to the top of the dashboard
 - Compact `GPU Scope` status-bar entry
-- Hover tooltip with utilization, VRAM, temperature, power, and process count
+- Compact status-bar hover showing only utilization and VRAM usage
 - Works as a workspace extension in Remote SSH, WSL, and Dev Containers
 - No telemetry or external network requests
 
@@ -30,6 +30,12 @@ nvidia-smi
 For a remote VS Code window, run the command in that remote environment. If `nvidia-smi` is installed at a non-standard location, configure `gpuScope.nvidiaSmiPath`.
 
 ## Installation
+
+### From the VS Code Marketplace
+
+1. Open the Extensions view in VS Code (`Ctrl+Shift+X`).
+2. Search for `NVIDIA GPU Scope`.
+3. Select the extension published by `ghlcode` and click **Install**.
 
 ### From a VSIX file
 
