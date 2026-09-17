@@ -1,0 +1,39 @@
+:root { color-scheme: light dark; }
+body { margin:0; padding:12px; color:var(--vscode-foreground); background:var(--vscode-sideBar-background); font-family:var(--vscode-font-family); font-size:13px; }
+.gpu-list { display:flex; flex-direction:column; gap:14px; }
+.multi-summary { margin:0 0 12px; padding:9px 10px; border:1px solid var(--vscode-widget-border); border-radius:6px; background:var(--vscode-editor-background); }
+.multi-title { font-size:12px; font-weight:600; }
+.multi-subtitle { margin-top:2px; color:var(--vscode-descriptionForeground); font-size:10px; }
+.gpu-panel { border:1px solid var(--vscode-widget-border); border-radius:7px; padding:10px; background:color-mix(in srgb, var(--vscode-editor-background) 72%, transparent); min-width:0; }
+.gpu-panel.pinned { border-color:var(--vscode-focusBorder); }
+.gpu-header { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:4px; }
+.gpu-title-wrap { min-width:0; }
+.gpu-index { color:var(--vscode-descriptionForeground); font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; }
+.name { font-size:14px; font-weight:600; margin-top:2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.gpu-header-actions { display:flex; align-items:center; gap:7px; flex:none; }
+.pin-button { display:grid; place-items:center; width:24px; height:24px; padding:0; border:1px solid transparent; border-radius:4px; color:var(--vscode-descriptionForeground); background:transparent; cursor:pointer; }
+.pin-button:hover { color:var(--vscode-foreground); background:var(--vscode-toolbar-hoverBackground); }
+.pin-button:focus-visible { outline:1px solid var(--vscode-focusBorder); outline-offset:1px; }
+.pin-button.pinned { color:var(--vscode-charts-blue); background:var(--vscode-toolbar-activeBackground); }
+.pin-button svg { width:15px; height:15px; fill:currentColor; }
+.gpu-live { flex:none; min-width:44px; text-align:right; font-size:18px; font-weight:700; font-variant-numeric:tabular-nums; }
+.grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
+.grid .card:last-child:nth-child(odd) { grid-column:1 / -1; }
+.card { border:1px solid var(--vscode-widget-border); background:var(--vscode-editor-background); border-radius:6px; padding:9px; min-width:0; }
+.metric-pair { display:grid; grid-template-rows:repeat(2,minmax(0,1fr)); padding-top:6px; padding-bottom:6px; }
+.metric-item { display:flex; align-items:baseline; justify-content:space-between; gap:8px; min-width:0; }
+.metric-item + .metric-item { margin-top:5px; padding-top:5px; border-top:1px solid var(--vscode-widget-border); }
+.metric-item .value { margin-top:0; font-size:14px; }
+.label { color:var(--vscode-descriptionForeground); font-size:9px; text-transform:uppercase; letter-spacing:.05em; }
+.value { margin-top:4px; font-size:16px; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.bar { height:4px; background:var(--vscode-input-background); border-radius:99px; overflow:hidden; margin-top:7px; }
+.bar > span { display:block; height:100%; background:var(--vscode-progressBar-background); border-radius:99px; }
+.section { margin-top:13px; }
+.section-title { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; color:var(--vscode-descriptionForeground); margin-bottom:6px; }
+.chart { width:100%; height:72px; display:block; background:var(--vscode-editor-background); border:1px solid var(--vscode-widget-border); border-radius:6px; }
+.chart-line { fill:none; stroke:var(--vscode-charts-blue); stroke-width:2; vector-effect:non-scaling-stroke; }
+.chart-grid { stroke:var(--vscode-widget-border); stroke-width:1; vector-effect:non-scaling-stroke; }
+
+.empty,.error { color:var(--vscode-descriptionForeground); padding:8px 0; line-height:1.5; }
+.error { color:var(--vscode-errorForeground); margin-bottom:8px; }
+@media (max-width:260px) { .grid { grid-template-columns:1fr; } .grid .card:last-child:nth-child(odd) { grid-column:auto; } .gpu-live { font-size:16px; } }

@@ -1,0 +1,12 @@
+.vscode/**
+.github/**
+src/**
+tsconfig.json
+.gitignore
+.gitattributes
+PUBLISHING.md
+node_modules/**
+*.vsix
+**/*.map
+
+images/icon-source.png

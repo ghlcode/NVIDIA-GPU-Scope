@@ -1,0 +1,123 @@
+{
+  "name": "nvidia-gpu-scope",
+  "displayName": "NVIDIA GPU Scope",
+  "description": "Real-time NVIDIA GPU monitoring for VS Code with multi-GPU dashboards, status-bar hover metrics, and Remote SSH support.",
+  "version": "1.0.0",
+  "publisher": "Huia",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "gpu",
+    "nvidia",
+    "cuda",
+    "monitor",
+    "deep learning",
+    "remote ssh"
+  ],
+  "main": "./out/extension.js",
+  "extensionKind": [
+    "workspace"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onView:gpuScope.dashboard",
+    "onCommand:gpuScope.refresh",
+    "onCommand:gpuScope.start",
+    "onCommand:gpuScope.stop",
+    "onCommand:gpuScope.openDashboard"
+  ],
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "check": "tsc -p ./ --noEmit",
+    "vscode:prepublish": "npm run compile",
+    "vsix": "vsce package",
+    "publish": "vsce publish"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "gpuScope.refresh",
+        "title": "NVIDIA GPU Scope: Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "gpuScope.start",
+        "title": "NVIDIA GPU Scope: Start Monitoring"
+      },
+      {
+        "command": "gpuScope.stop",
+        "title": "NVIDIA GPU Scope: Stop Monitoring"
+      },
+      {
+        "command": "gpuScope.openDashboard",
+        "title": "NVIDIA GPU Scope: Open Dashboard"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "gpuScope",
+          "title": "NVIDIA GPU Scope",
+          "icon": "media/gpu.svg"
+        }
+      ]
+    },
+    "views": {
+      "gpuScope": [
+        {
+          "type": "webview",
+          "id": "gpuScope.dashboard",
+          "name": "NVIDIA GPU Monitor",
+          "icon": "media/gpu.svg",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "gpuScope.refresh",
+          "when": "view == gpuScope.dashboard",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "NVIDIA GPU Scope",
+      "properties": {
+        "gpuScope.refreshInterval": {
+          "type": "number",
+          "default": 1000,
+          "minimum": 500,
+          "maximum": 10000,
+          "description": "GPU polling interval in milliseconds."
+        },
+        "gpuScope.nvidiaSmiPath": {
+          "type": "string",
+          "default": "nvidia-smi",
+          "description": "Path to the nvidia-smi executable."
+        },
+        "gpuScope.historyLength": {
+          "type": "number",
+          "default": 60,
+          "minimum": 10,
+          "maximum": 600,
+          "description": "Maximum number of GPU history samples."
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.95.0",
+    "@vscode/vsce": "^3.6.2",
+    "typescript": "^5.8.3"
+  }
+}
