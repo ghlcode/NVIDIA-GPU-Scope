@@ -46,5 +46,5 @@ body { margin:0; padding:12px; color:var(--vscode-foreground); background:var(--
 .chart-grid { stroke:var(--vscode-widget-border); stroke-width:1; vector-effect:non-scaling-stroke; }
 
 .empty,.error { color:var(--vscode-descriptionForeground); padding:8px 0; line-height:1.5; }
-.error { color:var(--vscode-errorForeground); margin-bottom:8px; }
+.error { color:var(--vscode-errorForeground); margin-bottom:8px; white-space:pre-wrap; word-break:break-word; }
 @media (max-width:260px) { .grid { grid-template-columns:1fr; } .grid .card:last-child:nth-child(odd) { grid-column:auto; } .gpu-live { font-size:16px; } }

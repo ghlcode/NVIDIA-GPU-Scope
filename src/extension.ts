@@ -35,10 +35,22 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     })
   );
 
-  if (!(await provider.isAvailable())) {
-    void vscode.window.showWarningMessage(
-      "NVIDIA GPU Scope: nvidia-smi was not found in this workspace. Configure gpuScope.nvidiaSmiPath if needed."
-    );
+  const probe = await provider.probe();
+  if (!probe.ok) {
+    const openSettings = "Open Settings";
+    void vscode.window
+      .showWarningMessage(
+        `NVIDIA GPU Scope: ${probe.message ?? "nvidia-smi is unavailable."}`,
+        openSettings
+      )
+      .then(choice => {
+        if (choice === openSettings) {
+          void vscode.commands.executeCommand(
+            "workbench.action.openSettings",
+            "gpuScope.nvidiaSmiPath"
+          );
+        }
+      });
   }
 
   monitor.start();

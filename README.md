@@ -61,6 +61,7 @@ The generated package is written to the repository root.
 | --- | ---: | --- |
 | `gpuScope.refreshInterval` | `1000` | Polling interval in milliseconds |
 | `gpuScope.nvidiaSmiPath` | `nvidia-smi` | Path to the `nvidia-smi` executable |
+| `gpuScope.queryTimeout` | `15000` | Maximum time in milliseconds to wait for a single `nvidia-smi` query |
 | `gpuScope.historyLength` | `60` | Maximum number of utilization samples retained in memory |
 
 ## Commands

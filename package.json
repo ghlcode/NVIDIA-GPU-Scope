@@ -105,6 +105,13 @@
           "default": "nvidia-smi",
           "description": "Path to the nvidia-smi executable."
         },
+        "gpuScope.queryTimeout": {
+          "type": "number",
+          "default": 15000,
+          "minimum": 1000,
+          "maximum": 60000,
+          "description": "Maximum time in milliseconds to wait for a single nvidia-smi query."
+        },
         "gpuScope.historyLength": {
           "type": "number",
           "default": 60,

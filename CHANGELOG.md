@@ -9,6 +9,9 @@ All notable changes to NVIDIA GPU Scope are documented in this file.
 - Highlighted CPU or memory load at or above 90% in the warning color.
 - Kept the host monitor visible when no GPU is detected or `nvidia-smi` fails.
 - Reported memory from `MemAvailable` on Linux so page cache is not counted as used.
+- Reported the actual `nvidia-smi` failure text instead of a bare `Command failed` message.
+- Fell back to the basic metrics when a driver rejects optional query fields such as `power.draw`.
+- Raised the `nvidia-smi` query timeout to 15 seconds and added the `gpuScope.queryTimeout` setting.
 
 ## 1.0.0
 
