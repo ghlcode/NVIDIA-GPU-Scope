@@ -1,9 +1,11 @@
 import * as vscode from "vscode";
 import { GpuMonitorService } from "../core/GpuMonitorService";
+import { SystemMonitor } from "../core/SystemMonitor";
 
 export class DashboardProvider implements vscode.WebviewViewProvider {
   static readonly viewType = "gpuScope.dashboard";
 
+  private readonly system = new SystemMonitor();
   private view?: vscode.WebviewView;
   private subscription?: vscode.Disposable;
 
@@ -51,6 +53,7 @@ export class DashboardProvider implements vscode.WebviewViewProvider {
       type: "gpu-update",
       gpus,
       histories,
+      system: this.system.sample(),
       error: this.monitor.lastError
     });
   }

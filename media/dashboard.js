@@ -6,10 +6,14 @@
   let pinnedGpuUuid = typeof persistedState.pinnedGpuUuid === 'string'
     ? persistedState.pinnedGpuUuid
     : undefined;
-  let state = { gpus: [], histories: {}, error: undefined };
+  let state = { gpus: [], histories: {}, system: undefined, error: undefined };
 
   function fmtGiB(mib) {
     return Number.isFinite(mib) ? (mib / 1024).toFixed(1) : 'N/A';
+  }
+
+  function fmtGB(bytes) {
+    return Number.isFinite(bytes) ? (bytes / 1073741824).toFixed(1) : 'N/A';
   }
 
   function fmt(value, suffix) {
@@ -38,6 +42,44 @@
       c.append(bar);
     }
     return c;
+  }
+
+  function meter(kind, label, meta, value, percent) {
+    const row = el('div', 'sys-meter ' + kind + (percent >= 90 ? ' high' : ''));
+    const head = el('div', 'sys-head');
+    const name = el('div', 'sys-label', label);
+    if (meta) name.append(el('span', 'sys-meta', meta));
+    const bar = el('div', 'bar');
+    const fill = document.createElement('span');
+    fill.style.width = clamp(percent) + '%';
+    bar.append(fill);
+    head.append(name, el('div', 'sys-value', value));
+    row.append(head, bar);
+    return row;
+  }
+
+  function renderSystem() {
+    const sys = state.system;
+    if (!sys) return undefined;
+
+    const section = el('section', 'sys');
+    const cores = Math.round(Number(sys.cpuCoreCount) || 0);
+    const coresLabel = cores > 0 ? cores + (cores === 1 ? ' core' : ' cores') : '';
+    const cpu = Number(sys.cpuUsagePercent);
+    const memoryPercent = Number(sys.memoryUsagePercent);
+
+    section.append(
+      meter('cpu', 'CPU', coresLabel, fmt(cpu, '%'), cpu),
+      meter(
+        'mem',
+        'Memory',
+        '',
+        fmtGB(sys.memoryUsedBytes) + ' / ' + fmtGB(sys.memoryTotalBytes) + ' GB',
+        memoryPercent
+      )
+    );
+
+    return section;
   }
 
   function temperaturePowerCard(gpu) {
@@ -157,14 +199,18 @@
     errorBox.hidden = !state.error;
     errorBox.textContent = state.error ? 'Refresh error: ' + state.error : '';
 
+    const frag = document.createDocumentFragment();
+    const system = renderSystem();
+    if (system) frag.append(system);
+
     if (!state.gpus.length) {
-      content.replaceChildren(
+      frag.append(
         el('div', 'empty', 'No NVIDIA GPU detected. Ensure nvidia-smi is available in this workspace.')
       );
+      content.replaceChildren(frag);
       return;
     }
 
-    const frag = document.createDocumentFragment();
     if (state.gpus.length > 1) {
       const summary = el('div', 'multi-summary');
       summary.append(
@@ -195,6 +241,7 @@
     state = {
       gpus: Array.isArray(msg.gpus) ? msg.gpus : [],
       histories: msg.histories || {},
+      system: msg.system,
       error: msg.error
     };
     render();

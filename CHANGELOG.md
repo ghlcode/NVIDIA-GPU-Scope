@@ -2,6 +2,14 @@
 
 All notable changes to NVIDIA GPU Scope are documented in this file.
 
+## 1.1.0
+
+- Added a host CPU and memory monitor at the top of the dashboard.
+- Showed CPU load with core count, plus used and total memory with live progress bars.
+- Highlighted CPU or memory load at or above 90% in the warning color.
+- Kept the host monitor visible when no GPU is detected or `nvidia-smi` fails.
+- Reported memory from `MemAvailable` on Linux so page cache is not counted as used.
+
 ## 1.0.0
 
 - Renamed the extension and Marketplace package to NVIDIA GPU Scope.

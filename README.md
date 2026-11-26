@@ -6,6 +6,7 @@ NVIDIA GPU Scope is a lightweight NVIDIA GPU monitor for Visual Studio Code. It 
 
 ## Features
 
+- Host CPU and memory usage at the top of the dashboard
 - Live GPU utilization with recent-history chart
 - VRAM used, total capacity, and usage percentage
 - GPU temperature

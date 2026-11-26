@@ -1,6 +1,17 @@
 :root { color-scheme: light dark; }
 body { margin:0; padding:12px; color:var(--vscode-foreground); background:var(--vscode-sideBar-background); font-family:var(--vscode-font-family); font-size:13px; }
 .gpu-list { display:flex; flex-direction:column; gap:14px; }
+.sys { margin:0 0 12px; padding:9px 10px; border:1px solid var(--vscode-widget-border); border-radius:6px; background:var(--vscode-editor-background); }
+.sys-head { display:flex; align-items:baseline; justify-content:space-between; gap:8px; min-width:0; }
+.sys-label { display:flex; align-items:baseline; gap:5px; color:var(--vscode-descriptionForeground); font-size:9px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; min-width:0; }
+.sys-meta { color:var(--vscode-descriptionForeground); font-size:9px; font-weight:400; text-transform:none; letter-spacing:0; opacity:.8; white-space:nowrap; }
+.sys-value { flex:none; font-size:12px; font-weight:600; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.sys-meter + .sys-meter { margin-top:9px; }
+.sys .bar { margin-top:5px; }
+.sys-meter.cpu .bar > span { background:var(--vscode-charts-blue, var(--vscode-progressBar-background)); }
+.sys-meter.mem .bar > span { background:var(--vscode-charts-green, var(--vscode-progressBar-background)); }
+.sys-meter.high .bar > span { background:var(--vscode-charts-red, var(--vscode-errorForeground)); }
+.sys-meter.high .sys-value { color:var(--vscode-charts-red, var(--vscode-errorForeground)); }
 .multi-summary { margin:0 0 12px; padding:9px 10px; border:1px solid var(--vscode-widget-border); border-radius:6px; background:var(--vscode-editor-background); }
 .multi-title { font-size:12px; font-weight:600; }
 .multi-subtitle { margin-top:2px; color:var(--vscode-descriptionForeground); font-size:10px; }

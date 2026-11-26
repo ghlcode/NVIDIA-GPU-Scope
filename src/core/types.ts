@@ -33,3 +33,11 @@ export interface GpuMonitorState {
   gpus: GpuInfo[];
   error?: string;
 }
+
+export interface SystemStats {
+  cpuUsagePercent: number;
+  cpuCoreCount: number;
+  memoryUsedBytes: number;
+  memoryTotalBytes: number;
+  memoryUsagePercent: number;
+}
