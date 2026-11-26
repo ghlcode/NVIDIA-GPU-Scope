@@ -2,6 +2,14 @@
 
 All notable changes to NVIDIA GPU Scope are documented in this file.
 
+## 1.1.1
+
+- Reported the actual `nvidia-smi` failure text instead of a bare `Command failed` message.
+- Fell back to the basic metrics when a driver rejects optional query fields such as `power.draw`.
+- Raised the `nvidia-smi` query timeout to 15 seconds and added the `gpuScope.queryTimeout` setting.
+- Used the detailed probe result in the startup warning and added a shortcut to the settings.
+- Displayed multi-line dashboard errors without collapsing them onto one line.
+
 ## 1.1.0
 
 - Added a host CPU and memory monitor at the top of the dashboard.
@@ -9,9 +17,6 @@ All notable changes to NVIDIA GPU Scope are documented in this file.
 - Highlighted CPU or memory load at or above 90% in the warning color.
 - Kept the host monitor visible when no GPU is detected or `nvidia-smi` fails.
 - Reported memory from `MemAvailable` on Linux so page cache is not counted as used.
-- Reported the actual `nvidia-smi` failure text instead of a bare `Command failed` message.
-- Fell back to the basic metrics when a driver rejects optional query fields such as `power.draw`.
-- Raised the `nvidia-smi` query timeout to 15 seconds and added the `gpuScope.queryTimeout` setting.
 
 ## 1.0.0
 
